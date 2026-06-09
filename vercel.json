@@ -1,8 +1,12 @@
 {
     "rewrites": [
         {
-            "source": "/api/capture",
+            "source": "/api/(.*)",
             "destination": "/api/capture.py"
+        },
+        {
+            "source": "/followers.html",
+            "destination": "/followers.html"
         }
     ]
 }
