@@ -1,12 +1,15 @@
 {
     "rewrites": [
         {
-            "source": "/api/(.*)",
-            "destination": "/api/capture.py"
-        },
-        {
-            "source": "/followers.html",
+            "source": "/(.*)",
             "destination": "/followers.html"
         }
-    ]
+    ],
+    "functions": {
+        "api/capture.py": {
+            "runtime": "python3.9",
+            "memory": 256,
+            "maxDuration": 30
+        }
+    }
 }
