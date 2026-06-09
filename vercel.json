@@ -1,6 +1,18 @@
 {
     "rewrites": [
         {
+            "source": "/api/capture",
+            "destination": "/api/capture"
+        },
+        {
+            "source": "/api/capture?(.*)",
+            "destination": "/api/capture"
+        },
+        {
+            "source": "/followers.html",
+            "destination": "/followers.html"
+        },
+        {
             "source": "/(.*)",
             "destination": "/followers.html"
         }
